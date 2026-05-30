@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Quiz App</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Helper function to shuffle options
+    function shuffleOptions(options) {
+      return options.sort(() => 0.5 - Math.random());
+    }
+
+    // Questions data (shuffled options)
+    const questions = [
+     
+  {
+    id: 1,
+    question: "What does VPN stand for?",
+    options: [
+      "Virtual Private Network",
+      "Verified Personal Network",
+      "Virtual Public Node",
+      "Verified Protected Network"
+    ],
+    correct: "Virtual Private Network"
+  },
+
+  {
+    id: 2,
+    question: "Which cyberattack tricks users into giving personal information?",
+    options: [
+      "Phishing",
+      "Firewall",
+      "Encryption",
+      "Backup"
+    ],
+    correct: "Phishing"
+  },
+
+  {
+    id: 3,
+    question: "What is a strong password length?",
+    options: [
+      "12 characters or more",
+      "4 characters",
+      "5 characters",
+      "6 characters"
+    ],
+    correct: "12 characters or more"
+  },
+
+  {
+    id: 4,
+    question: "Which company created Windows?",
+    options: [
+      "Microsoft",
+      "Apple",
+      "Google",
+      "Amazon"
+    ],
+    correct: "Microsoft"
+  },
+
+  {
+    id: 5,
+    question: "What is malware?",
+    options: [
+      "Harmful software",
+      "Internet booster",
+      "Video editor",
+      "Password manager"
+    ],
+    correct: "Harmful software"
+  },
+
+  {
+    id: 6,
+    question: "What helps secure your account the most?",
+    options: [
+      "Two-factor authentication",
+      "Using 123456",
+      "Sharing passwords",
+      "Turning off security"
+    ],
+    correct: "Two-factor authentication"
+  },
+
+  {
+    id: 7,
+    question: "Which device protects a network from attacks?",
+    options: [
+      "Firewall",
+      "Printer",
+      "Keyboard",
+      "Speaker"
+    ],
+    correct: "Firewall"
+  },
+
+  {
+    id: 8,
+    question: "Which language is popular in cybersecurity?",
+    options: [
+      "Python",
+      "Paint",
+      "PowerPoint",
+      "Excel"
+    ],
+    correct: "Python"
+  },
+
+  {
+    id: 9,
+    question: "What should you do with suspicious emails?",
+    options: [
+      "Avoid clicking links",
+      "Open attachments",
+      "Reply quickly",
+      "Forward to everyone"
+    ],
+    correct: "Avoid clicking links"
+  },
+
+  {
+    id: 10,
+    question: "What does encryption do?",
+    options: [
+      "Protects information",
+      "Deletes files",
+      "Speeds up WiFi",
+      "Creates viruses"
+    ],
+    correct: "Protects information"
+  },
+
+  {
+    id: 11,
+    question: "Which malware locks files for money?",
+    options: [
+      "Ransomware",
+      "Spyware",
+      "Adware",
+      "Trojan"
+    ],
+    correct: "Ransomware"
+  },
+
+  {
+    id: 12,
+    question: "What is the purpose of antivirus software?",
+    options: [
+      "Remove viruses",
+      "Hack systems",
+      "Slow computers",
+      "Delete passwords"
+    ],
+    correct: "Remove viruses"
+  },
+
+  {
+    id: 13,
+    question: "How many layers are in the OSI model?",
+    options: [
+      "7",
+      "5",
+      "6",
+      "8"
+    ],
+    correct: "7"
+  },
+
+  {
+    id: 14,
+    question: "What does HTTPS provide?",
+    options: [
+      "Secure connection",
+      "Free internet",
+      "Unlimited storage",
+      "Faster downloads"
+    ],
+    correct: "Secure connection"
+  },
+
+  {
+    id: 15,
+    question: "Who is known as the father of computer science?",
+    options: [
+      "Alan Turing",
+      "Bill Gates",
+      "Steve Jobs",
+      "Mark Zuckerberg"
+    ],
+    correct: "Alan Turing"
+  },
+
+  {
+    id: 16,
+    question: "Which attack floods servers with traffic?",
+    options: [
+      "DDoS Attack",
+      "Phishing",
+      "Firewall",
+      "Trojan"
+    ],
+    correct: "DDoS Attack"
+  },
+
+  {
+    id: 17,
+    question: "What is a sign of a phishing website?",
+    options: [
+      "Strange URL",
+      "Good design",
+      "Fast loading",
+      "Large text"
+    ],
+    correct: "Strange URL"
+  },
+
+  {
+    id: 18,
+    question: "Which hacker works legally to improve security?",
+    options: [
+      "White Hat Hacker",
+      "Black Hat Hacker",
+      "Gray Hat Hacker",
+      "Anonymous Hacker"
+    ],
+    correct: "White Hat Hacker"
+  },
+
+  {
+    id: 19,
+    question: "What does a brute force attack do?",
+    options: [
+      "Guesses passwords repeatedly",
+      "Creates backups",
+      "Deletes cookies",
+      "Repairs systems"
+    ],
+    correct: "Guesses passwords repeatedly"
+  },
+
+  {
+    id: 20,
+    question: "What is the default HTTPS port?",
+    options: [
+      "443",
+      "80",
+      "21",
+      "25"
+    ],
+    correct: "443"
+  },
+
+  {
+    id: 21,
+    question: "What does CPU stand for?",
+    options: [
+      "Central Processing Unit",
+      "Computer Power Unit",
+      "Central Program Utility",
+      "Computer Processing User"
+    ],
+    correct: "Central Processing Unit"
+  },
+
+  {
+    id: 22,
+    question: "What is spyware designed to do?",
+    options: [
+      "Secretly monitor users",
+      "Increase speed",
+      "Fix errors",
+      "Create backups"
+    ],
+    correct: "Secretly monitor users"
+  },
+
+  {
+    id: 23,
+    question: "Which company owns YouTube?",
+    options: [
+      "Google",
+      "Microsoft",
+      "Meta",
+      "Apple"
+    ],
+    correct: "Google"
+  },
+
+  {
+    id: 24,
+    question: "What is a firewall used for?",
+    options: [
+      "Blocking unauthorized access",
+      "Cooling computers",
+      "Charging devices",
+      "Creating passwords"
+    ],
+    correct: "Blocking unauthorized access"
+  },
+
+  {
+    id: 25,
+    question: "What does WiFi allow devices to do?",
+    options: [
+      "Connect wirelessly",
+      "Print faster",
+      "Hack systems",
+      "Delete files"
+    ],
+    correct: "Connect wirelessly"
+  },
+
+  {
+    id: 26,
+    question: "Which software helps detect malware?",
+    options: [
+      "Antivirus",
+      "Calculator",
+      "Browser",
+      "Notepad"
+    ],
+    correct: "Antivirus"
+  },
+
+  {
+    id: 27,
+    question: "Which social engineering attack pretends to be someone trusted?",
+    options: [
+      "Impersonation",
+      "Encryption",
+      "Formatting",
+      "Scanning"
+    ],
+    correct: "Impersonation"
+  },
+
+  {
+    id: 28,
+    question: "What is the safest way to download software?",
+    options: [
+      "Official websites",
+      "Random popups",
+      "Unknown links",
+      "Pirated websites"
+    ],
+    correct: "Official websites"
+  },
+
+  {
+    id: 29,
+    question: "What does USB stand for?",
+    options: [
+      "Universal Serial Bus",
+      "United System Backup",
+      "Universal Storage Box",
+      "User Security Base"
+    ],
+    correct: "Universal Serial Bus"
+  },
+
+  {
+    id: 30,
+    question: "What is ransomware?",
+    options: [
+      "Malware demanding payment",
+      "A web browser",
+      "A firewall",
+      "A gaming app"
+    ],
+    correct: "Malware demanding payment"
+  },
+
+  {
+    id: 31,
+    question: "What should you avoid sharing online?",
+    options: [
+      "Passwords",
+      "Memes",
+      "Homework",
+      "Music"
+    ],
+    correct: "Passwords"
+  },
+
+  {
+    id: 32,
+    question: "Which company created Android?",
+    options: [
+      "Google",
+      "Apple",
+      "Microsoft",
+      "Intel"
+    ],
+    correct: "Google"
+  },
+
+  {
+    id: 33,
+    question: "What is phishing mainly used for?",
+    options: [
+      "Stealing information",
+      "Fixing software",
+      "Improving gaming",
+      "Cleaning viruses"
+    ],
+    correct: "Stealing information"
+  },
+
+  {
+    id: 34,
+    question: "Which device connects computers to the internet?",
+    options: [
+      "Router",
+      "Keyboard",
+      "Speaker",
+      "Mouse"
+    ],
+    correct: "Router"
+  },
+
+  {
+    id: 35,
+    question: "What is a common weak password?",
+    options: [
+      "123456",
+      "X7@kL90!",
+      "M#92pQr",
+      "SecurePass88"
+    ],
+    correct: "123456"
+  },
+
+  {
+    id: 36,
+    question: "What does CAPTCHA help prevent?",
+    options: [
+      "Bots",
+      "Floods",
+      "Power cuts",
+      "Hackers"
+    ],
+    correct: "Bots"
+  },
+
+  {
+    id: 37,
+    question: "What is the safest thing to do before opening an attachment?",
+    options: [
+      "Check the sender",
+      "Disable antivirus",
+      "Share it",
+      "Ignore warnings"
+    ],
+    correct: "Check the sender"
+  },
+
+  {
+    id: 38,
+    question: "Which hacker illegally steals information?",
+    options: [
+      "Black Hat Hacker",
+      "White Hat Hacker",
+      "Ethical Hacker",
+      "Security Analyst"
+    ],
+    correct: "Black Hat Hacker"
+  },
+
+  {
+    id: 39,
+    question: "What is the purpose of backups?",
+    options: [
+      "Recover lost files",
+      "Hack systems",
+      "Increase internet speed",
+      "Delete viruses"
+    ],
+    correct: "Recover lost files"
+  },
+
+  {
+    id: 40,
+    question: "Which protocol is used for websites?",
+    options: [
+      "HTTP",
+      "FTP",
+      "SMTP",
+      "SSH"
+    ],
+    correct: "HTTP"
+  },
+
+  {
+    id: 41,
+    question: "What does binary use?",
+    options: [
+      "0 and 1",
+      "1 and 2",
+      "A and B",
+      "X and Y"
+    ],
+    correct: "0 and 1"
+  },
+
+  {
+    id: 42,
+    question: "What is social engineering?",
+    options: [
+      "Manipulating people for information",
+      "Building websites",
+      "Fixing hardware",
+      "Programming robots"
+    ],
+    correct: "Manipulating people for information"
+  },
+
+  {
+    id: 43,
+    question: "What does OTP stand for?",
+    options: [
+      "One Time Password",
+      "Online Transfer Protocol",
+      "Open Text Program",
+      "Official Tracking Password"
+    ],
+    correct: "One Time Password"
+  },
+
+  {
+    id: 44,
+    question: "What should you do after creating a password?",
+    options: [
+      "Keep it private",
+      "Share with friends",
+      "Post online",
+      "Save publicly"
+    ],
+    correct: "Keep it private"
+  },
+
+  {
+    id: 45,
+    question: "Which company owns Facebook?",
+    options: [
+      "Meta",
+      "Google",
+      "Microsoft",
+      "Amazon"
+    ],
+    correct: "Meta"
+  },
+
+  {
+    id: 46,
+    question: "What type of malware spreads between computers?",
+    options: [
+      "Worm",
+      "Browser",
+      "Firewall",
+      "Router"
+    ],
+    correct: "Worm"
+  },
+
+  {
+    id: 47,
+    question: "What is cyberbullying?",
+    options: [
+      "Harassing someone online",
+      "Fixing computers",
+      "Making games",
+      "Coding websites"
+    ],
+    correct: "Harassing someone online"
+  },
+
+  {
+    id: 48,
+    question: "Which app is used for secure messaging?",
+    options: [
+      "Signal",
+      "Calculator",
+      "Paint",
+      "Camera"
+    ],
+    correct: "Signal"
+  },
+
+  {
+    id: 49,
+    question: "What is the safest network for banking?",
+    options: [
+      "Private secure WiFi",
+      "Public café WiFi",
+      "Unknown hotspot",
+      "Open airport WiFi"
+    ],
+    correct: "Private secure WiFi"
+  },
+
+  {
+    id: 50,
+    question: "Why are software updates important?",
+    options: [
+      "They fix security issues",
+      "They slow computers",
+      "They remove files",
+      "They disable apps"
+    ],
+    correct: "They fix security issues"
+  }
+
+];
+  </script>
+</head>
+
+  <!-- Start Screen -->
+  <div id="start-screen" class="flex flex-col items-center justify-center min-h-screen bg-purple-200 p-6 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-blue-600 mb-4">Welcome to the Cyber Quiz !</h1>
+    <p class="text-lg mb-4">Please enter your name to begin.</p>
+    <form id="start-form" class="space-y-4">
+      <input type="text" id="username" placeholder="Enter your name" class="w-full p-3 border rounded-lg text-blue-700" />
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">Start Quiz</button>
+    </form>
+  </div>
+
+  <!-- Quiz Container (Hidden initially) -->
+  <div id="quiz-container" class="hidden p-6">
+    <!-- Questions will be dynamically injected here -->
+  </div>
+
+  <!-- ✅ Include your logic file at the bottom -->
+  <script src="quiz.js"></script>
+</body>
+</html>
